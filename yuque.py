@@ -91,7 +91,7 @@ def main(wf):
 
 if __name__ == '__main__':
     update_settings = {
-        'github_slug': 'xiaotu9639/alfred-yuque-workflow',
+        'github_slug': 'joest67/alfred-yuque-workflow',
         'frequency'  : 1
     }
     wf3 = Workflow3(update_settings=update_settings)
