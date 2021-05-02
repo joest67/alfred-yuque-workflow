@@ -11,9 +11,13 @@ YUQUE_BASE_URL = 'https://yuque.com'
 
 def query_doc(wf, query):
     token = wf.stored_data('token')
+    base_url = wf.stored_data('base_url') or YUQUE_BASE_URL
     headers = {
-        'X-Auth-Token': token}
-    url = '%s/api/v2/search?type=doc&related=true&q=%s' % (YUQUE_BASE_URL, urllib.quote(query.encode('utf-8')))
+        'X-Auth-Token': token
+    }
+    url = '%s/api/v2/search?type=doc&q=%s' % (base_url, urllib.quote(query.encode('utf-8')))
+    if not query.startswith('!'):
+        url += '&related=true'
     wf.logger.debug('==> url: %s', url)
     resp = web.get(url, headers=headers)
     if resp.status_code == 200:
@@ -32,7 +36,7 @@ def query_doc(wf, query):
             subtitle = clean_hilight(doc['summary'])
             wf.add_item(title,
                         subtitle=subtitle,
-                        arg='open %s%s' % (YUQUE_BASE_URL, doc['url']),
+                        arg='open %s%s' % (base_url, doc['url']),
                         valid=True)
     # 未授权
     elif resp.status_code == 401:
@@ -59,6 +63,13 @@ def action_list(wf, query):
                     subtitle=u'检查更新',
                     arg='update',
                     autocomplete='> update ',
+                    valid=True)
+
+    if command in 'config':
+        wf.add_item('> config <Base URL>',
+                    subtitle=u'配置',
+                    arg='config %s' % args[-1],
+                    autocomplete='> config ',
                     valid=True)
 
 

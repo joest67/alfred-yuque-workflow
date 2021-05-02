@@ -13,6 +13,12 @@ def main(wf):
         token = args[-1]
         wf.store_data('token', token)
         wf.logger.debug('==> Stored token is: %s', token)
+
+    if command == 'config':
+        base_url = args[-1]
+        wf.store_data('base_url', base_url)
+        wf.logger.debug('==> Stored base_url is: %s', base_url)
+
     if command == 'update':
         wf.start_update()
 
@@ -22,7 +28,7 @@ def main(wf):
 
 if __name__ == '__main__':
     update_settings = {
-        'github_slug': 'xiaotu9639/alfred-yuque-workflow',
+        'github_slug': 'joest67/alfred-yuque-workflow',
         'frequency'  : 1
     }
     wf3 = Workflow3(update_settings=update_settings)
