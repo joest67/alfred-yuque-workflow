@@ -209,7 +209,7 @@
 		</dict>
 	</dict>
 	<key>version</key>
-	<string></string>
+	<string>1.6.11</string>
 	<key>webaddress</key>
 	<string>https://github.com/joest67/alfred-yuque-workflow</string>
 </dict>
