@@ -165,7 +165,8 @@
 				<key>argument</key>
 				<string>{query}</string>
 				<key>variables</key>
-				<dict/>
+				<dict>
+				</dict>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.utility.argument</string>
@@ -209,7 +210,7 @@
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.6.11</string>
+	<string>1.7.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/joest67/alfred-yuque-workflow</string>
 </dict>

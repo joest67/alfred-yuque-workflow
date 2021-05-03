@@ -2,10 +2,16 @@
 # Authors: Joe <xiaotu9639@gmail.com>
 
 import os
+import plistlib
 import re
 import zipfile
 
-__version__ = '1.0.0'
+
+def update_version(new_version):
+    resp = plistlib.readPlist("info.plist")
+    resp['version'] = new_version
+    plistlib.writePlist(resp, "info.plist")
+
 
 if __name__ == '__main__':
     # 获取新版本号
@@ -20,6 +26,8 @@ if __name__ == '__main__':
     # 新版本号写入 version 文件
     with open('version', 'w') as v:
         v.write(new_version)
+
+    update_version(new_version)
 
     # 构建发布包
     if not os.path.exists('out'):
